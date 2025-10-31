@@ -1,66 +1,66 @@
-# 🎬 Letterboxd Film Veriseti: EDA ve Hibrit Öneri Sistemleri
-## Proje Başlığı: Letterboxd-Movies-EDA-Systems
+# 🎬 Letterboxd Movie Dataset: EDA and Hybrid Recommender Systems
+## Repository Name: Letterboxd-Movies-EDA-Systems
 
-### 📋 İçerik
+### 📋 Table of Contents
 
-1.  Proje Özeti
-2.  Verisetinin Kaynağı
-3.  Metodoloji ve Çalışma Adımları
-4.  Temel İçgörüler (EDA Sonuçları)
-5.  Oluşturulan Öneri Sistemleri
-6.  Teknolojiler
+1.  Project Overview
+2.  Dataset Source
+3.  Methodology and Workflow
+4.  Key Insights (EDA Results)
+5.  Developed Recommendation Systems
+6.  Technologies Used
 
 ---
 
-### 1. Proje Özeti
+### 1. Project Overview
 
-Bu proje, Kaggle üzerinde bulunan kapsamlı Letterboxd Film Verisetini kullanarak derinlemesine bir Keşifçi Veri Analizi (EDA) gerçekleştirmeyi ve üç farklı yaklaşımla film öneri sistemleri geliştirmeyi amaçlamaktadır. Projenin ana odağı, en yüksek alaka düzeyine sahip önerileri sunan **Ağırlıklı İçerik Tabanlı Hibrit Öneri Sistemi** oluşturmaktır.
+This project focuses on performing in-depth Exploratory Data Analysis (EDA) and developing three distinct movie recommendation systems using the comprehensive Letterboxd Movie Dataset from Kaggle. The main objective was to engineer a robust **Weighted Content-Based Hybrid Recommender System** capable of delivering highly relevant and nuanced film suggestions.
 
-### 2. Verisetinin Kaynağı
+### 2. Dataset Source
 
-* **Veriset Adı:** Letterboxd Movies Dataset
-* **Kaynak:** Kaggle
-* **Bağlantı:** [Orijinal Kaggle Veriseti Linkini Buraya Ekleyin]
-* **Kayıt Sayısı:** 16,246 film kaydı
-* **Özellikler:** 28 sütun (Türler, Çalışma Süresi, Ülke, Yıl, Film Süresi Kategorisi, vb.)
+* **Dataset Name:** Letterboxd Movies Dataset
+* **Source:** Kaggle
+* **Link:** [Insert the Original Kaggle Dataset Link Here]
+* **Record Count:** 16,246 movie entries
+* **Features:** 28 columns (including Genres, Runtime, Country, Year, etc.)
 
-### 3. Metodoloji ve Çalışma Adımları
+### 3. Methodology and Workflow
 
-Proje, standart bir veri bilimi iş akışını takip etmiştir:
+The project followed a standard Data Science workflow:
 
-#### A. Veri Temizliği ve Ön İşleme
-* `df.info()` analizi ile eksik değerler tespit edildi.
-* Kategorik sütunlardaki (`primary_genre`, `country`) eksiklikler **"Bilinmiyor"** etiketiyle, sayısal sütunlardaki (`runtime`) eksiklikler ise **Medyan** ile dolduruldu.
-* Tüm verilerin tutarlılığı sağlandı.
+#### A. Data Cleaning and Preprocessing
+* Missing values were identified using `df.info()`.
+* Missing categorical features (e.g., `primary_genre`, `country`) were imputed with **"Unknown"**.
+* Numerical features (e.g., `runtime`) were imputed using the **Median** value.
 
-#### B. Keşifçi Veri Analizi (EDA)
-* **Univariate:** En popüler film türleri (Komedi, Romantizm) ve süre dağılımı (Median Runtime: [Bulduğunuz Değeri Buraya Yazın] dk) görselleştirildi.
-* **Temporal:** Yıllara göre film üretim eğilimleri ve On Yıllara göre Türlerin popülarite değişimleri (Heatmap) analiz edildi.
-* **Bivariate:** Tür ve Çalışma Süresi arasındaki ilişki (Box Plot) incelendi.
+#### B. Exploratory Data Analysis (EDA)
+* **Univariate:** Visualized the distribution of top genres (e.g., Comedy, Romance) and runtime (Median Runtime: [Insert Your Found Median Runtime] min).
+* **Temporal:** Analyzed film production trends over time and visualized genre popularity across decades (Heatmap).
+* **Bivariate:** Examined the relationship between `primary_genre` and `runtime` using Box Plots.
 
-#### C. Modelleme: Üç Farklı Öneri Sistemi Geliştirildi
-Tüm sistemler, **Kosinüs Benzerliği (Cosine Similarity)** veya **Uzaklık Metrikleri** kullanılarak geliştirilmiştir.
+#### C. Modeling: Three Recommendation Systems Developed
+All systems rely on similarity calculations, either through **Cosine Similarity** or **Distance Metrics**.
 
-### 4. Oluşturulan Öneri Sistemleri
+### 4. Developed Recommendation Systems
 
-| Sistem Tipi | Odak Noktası | Teknik | Amacı |
+| System Type | Focus | Technique | Goal |
 | :--- | :--- | :--- | :--- |
-| **1. Basit Kategori Bazlı** | `primary_genre`, `decade_category` | Filtreleme & Yıla Göre Sıralama | Belirli bir kategorideki en yeni/popüler filmleri listeler. |
-| **2. Tür Bazlı İçerik** | Yalnızca `genres` | TF-IDF & Kosinüs Benzerliği | Aynı tür etiketlerine sahip filmleri önerir (dar öneriler). |
-| **3. Ağırlıklı Hibrit İçerik (Odak)** | `genres`, `country`, `language`, `decade_category` | **Ağırlıklı TF-IDF & Kosinüs Benzerliği** | Tür, coğrafya ve dönemi birleştirerek en alakalı, zengin önerileri sunar. |
+| **1. Simple Category-Based** | `primary_genre` or `decade_category` | Filtering & Ranking by Year | Provides a baseline list of the most recent/top films within a specified category. |
+| **2. Genre-Only Content-Based** | Solely `genres` | TF-IDF & Cosine Similarity | Recommends films with matching genre tags (narrow recommendations). |
+| **3. Weighted Hybrid Content (Core Focus)** | `genres`, `country`, `language`, `decade_category` | **Weighted TF-IDF & Cosine Similarity** | Combines features with weights to recommend films similar in genre, geography, and time period (highest relevance). |
 
-### 5. Temel İçgörüler (Projenin En Önemli Çıktıları)
+### 5. Key Insights
 
-* [Bulduğunuz en yüksek korelasyonu buraya yazın.]
-* [En popüler olan (Örn: Komedi) ve en az popüler olan türü yazın.]
-* [Hibrit sistemin, sadece tür bazlı sisteme göre ne kadar farklı/iyi sonuç verdiğini kısaça belirtin.]
+* **Dominant Genre:** The dataset is heavily skewed towards [State the most dominant genre] (e.g., Comedy).
+* **Runtime Trends:** The comparison between **Classic** and Non-Classic films revealed [State your finding about runtime difference].
+* **Hybrid Superiority:** The Weighted Hybrid System provided demonstrably richer recommendations by identifying films with shared [Mention a secondary feature like "country" or "decade"] similarities that the Genre-Only model missed.
 
-### 6. Teknolojiler
+### 6. Technologies Used
 
 * `Python`
 * `Jupyter Notebook`
-* `Pandas` (Veri Manipülasyonu)
-* `NumPy` (Sayısal İşlemler)
-* `Matplotlib` / `Seaborn` (Görselleştirme)
-* `Scikit-learn (sklearn)` (TF-IDF, Kosinüs Benzerliği)
-* `WordCloud` (Opsiyonel)
+* `Pandas` (Data Manipulation)
+* `NumPy` (Numerical Operations)
+* `Matplotlib` / `Seaborn` (Visualization)
+* `Scikit-learn (sklearn)` (TF-IDF, Cosine Similarity)
+* `Git` / `GitHub` (Version Control & Hosting)
